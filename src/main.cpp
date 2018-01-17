@@ -4,6 +4,10 @@
 
 #ifdef WIN32
     #include <windows.h>
+#elif
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <unistd.h>
 #endif // WIN32
 
 int main(int argc, char** argv)
@@ -69,7 +73,7 @@ int main(int argc, char** argv)
     if (yn != 'y') {
         exit(EXIT_FAILURE);
     }
-
+#ifdef WIN32
     if (!CreateDirectory((std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset])).c_str(), NULL)) {
         fprintf(stderr, "Failed to create directory!");
         exit(EXIT_FAILURE);
@@ -86,7 +90,24 @@ int main(int argc, char** argv)
         fprintf(stderr, "Failed to create directory!");
         exit(EXIT_FAILURE);
     }
-
+#elif
+    if (!mkdir((std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset])).c_str(), 770)) {
+        fprintf(stderr, "Failed to create directory!");
+        exit(EXIT_FAILURE);
+    } else if (!mkdir((std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset]) + "/build").c_str(), 770)) {
+        fprintf(stderr, "Failed to create directory!");
+        exit(EXIT_FAILURE);
+    } else if (!mkdir((std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset]) + "/run").c_str(), 770)) {
+        fprintf(stderr, "Failed to create directory!");
+        exit(EXIT_FAILURE);
+    } else if (!mkdir((std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset]) + "/src").c_str(), 770)) {
+        fprintf(stderr, "Failed to create directory!");
+        exit(EXIT_FAILURE);
+    } else if (!mkdir((std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset]) + "/include").c_str(), 770)) {
+        fprintf(stderr, "Failed to create directory!");
+        exit(EXIT_FAILURE);
+    }
+#endif //WIN32
     printf("%s", (std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset]) + "/CMakeLists.txt").c_str());
 
     std::ofstream f;

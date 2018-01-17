@@ -15,4 +15,10 @@ fstream
 -
 windows.h
 -
+sys/types.h
+-
+sys/stat.h
+-
+unistd.h
+-
 
