@@ -13,3 +13,11 @@ os:
     - windows
     - linux
 script: rm -r build/* && cd build && cmake .. && make
+
+deploy:
+    provider: releases
+    api_key
+        secure: ${GH_TOKEN}
+    file:
+        - run/Project_Creator.exe
+        - run/Project_Creator
