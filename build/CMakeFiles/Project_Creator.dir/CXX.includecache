@@ -11,6 +11,8 @@ iostream
 -
 stdio.h
 -
+cstring
+-
 fstream
 -
 windows.h

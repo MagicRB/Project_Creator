@@ -1,10 +1,11 @@
 #include <iostream>
 #include <stdio.h>
+#include <cstring>
 #include <fstream>
 
 #ifdef WIN32
     #include <windows.h>
-#elif
+#else
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <unistd.h>
@@ -90,7 +91,7 @@ int main(int argc, char** argv)
         fprintf(stderr, "Failed to create directory!");
         exit(EXIT_FAILURE);
     }
-#elif
+#else
     if (!mkdir((std::string(argv[2 + offset]) + "/" + std::string(argv[1 + offset])).c_str(), 770)) {
         fprintf(stderr, "Failed to create directory!");
         exit(EXIT_FAILURE);
