@@ -7,4 +7,4 @@ addons:
       - cmake
 language: cpp
 compiler: clang
-script: rm -r build/ * && cd build && cmake .. && make
+script: rm -r build/* && cd build && cmake .. && make
