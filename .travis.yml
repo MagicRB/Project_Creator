@@ -7,3 +7,4 @@ addons:
       - cmake
 language: cpp
 compiler: clang
+build: cd build && cmake .. && make
